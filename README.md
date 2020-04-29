@@ -21,13 +21,15 @@ $ yarn add https://github.com/chriscdn/sharpify
 ```js
 const sharpify = require('@chriscdn/sharpify')
 
-await sharpify(source, target, options)
+await sharpify(source, target[, options])
 ```
+
+The promise will reject if for any reason target couldn't be generated.
 
 The default `options` are:
 
 ```js
-const defaultArgs = {
+const options = {
 	blur: 0,
 	saturation: 1,
 	width: null,

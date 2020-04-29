@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@chriscdn/promise-semaphore@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@chriscdn/promise-semaphore/-/promise-semaphore-1.0.3.tgz#5aca9b968960eba22c4096960bb72a086ccdc88d"
+  integrity sha512-9WIY065UY6MbVBxEd6fmyFhGT/A4ITdSrLtSPOJ+ndVjXpLYUSxEf1FM+2nbDRQve4XnhN94AnKfaOziraF29w==
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
