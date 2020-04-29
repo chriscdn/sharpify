@@ -1,0 +1,10 @@
+{
+  "name": "@chriscdn/sharpify",
+  "version": "1.0.0",
+  "description": "A small sharp wrapper.",
+  "main": "index.js",
+  "repository": "https://github.com/chriscdn/sharpify",
+  "author": "Christopher Meyer <chris@schwiiz.org>",
+  "license": "Apache-2.0",
+  "private": true
+}
