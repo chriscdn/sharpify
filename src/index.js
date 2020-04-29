@@ -1,5 +1,8 @@
-const { fork } = require('child_process')
-const isImage = require('./is-image')
+const {
+	fork
+} = require('child_process')
+
+const pathExists = require('path-exists')
 const Semaphore = require('@chriscdn/promise-semaphore')
 
 const lock = new Semaphore()
@@ -22,25 +25,24 @@ module.exports = async function(source, target, args) {
 		...args
 	}
 
-
-	// console.log(`${source} -> ${target}`)
-
 	// only one process should ever write to target at a time
 	await lock.acquire(target)
 
 	let f = fork(__dirname + '/_sharpify.js', [JSON.stringify(jargs)])
 
 	return new Promise((resolve, reject) => {
-		f.on('exit', code => {
-			if (isImage(target)) {
-				resolve()
-			} else {
-				reject(new Error('Sharpify: An unknown error occurred.'))
-			}
+			f.on('exit', async code => {
+				if (await pathExists(target)) {
+					resolve()
+				} else {
+					reject(new Error('Sharpify: An unknown error occurred.'))
+				}
 
+			})
+			f.on('error', err => reject(err))
 		})
-		f.on('error', err => reject(err))
-	})
-	.finally(() => lock.release(target))
+		.finally(() => {
+			lock.release(target)
+		})
 
 }

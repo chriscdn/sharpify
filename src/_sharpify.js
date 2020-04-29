@@ -9,6 +9,7 @@ const target = args.target
 
 apply()
 	.catch(err => {
+		console.log(`--- Sharpify Error: ${source} ---`)
 		console.log(err)
 		return fsp.unlink(target)
 	})
