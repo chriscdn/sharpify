@@ -2,9 +2,15 @@
   "name": "@chriscdn/sharpify",
   "version": "1.0.0",
   "description": "A small sharp wrapper.",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://github.com/chriscdn/sharpify",
   "author": "Christopher Meyer <chris@schwiiz.org>",
   "license": "Apache-2.0",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "image-type": "^4.1.0",
+    "is-number": "^7.0.0",
+    "read-chunk": "^3.2.0",
+    "sharp": "^0.25.2"
+  }
 }
