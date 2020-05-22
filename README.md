@@ -2,7 +2,7 @@
 
 The [sharp](https://www.npmjs.com/package/sharp) package is amazing.  But for whatever reason there is a [memory leak](https://github.com/lovell/sharp/issues/955), which I don't understand well enough to work around.
 
-This little utility creates a child process for each sharp operation, which prevents the memory leak.  A subset of operations are supported.
+This little utility creates a child process for each sharp operation, which works around the memory leak.  A subset of operations are supported.
 
 ## Installing
 
@@ -19,7 +19,7 @@ $ yarn add https://github.com/chriscdn/sharpify
 ## Usage
 
 ```js
-const sharpify = require('@chriscdn/sharpify')
+const {sharpify} = require('@chriscdn/sharpify')
 
 await sharpify(source, target[, options])
 ```

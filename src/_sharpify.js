@@ -56,6 +56,8 @@ async function apply() {
 			width: box.width,
 			height: box.height
 		})
+	} else {
+		s = await s.rotate()
 	}
 
 	if (width || height) {
