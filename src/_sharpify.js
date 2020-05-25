@@ -24,9 +24,16 @@ async function apply() {
 	let rotate = assertIntegerValue(args.rotate, -20, 20)
 	let width = assertIntegerValue(args.width, 0, args.width)
 	let height = assertIntegerValue(args.height, 0, args.height)
+	let withMetadata = !!args.withMetadata
+	let withoutEnlargement = !!args.withoutEnlargement
+
 	let fit = args.fit
 
 	let s = await sharp(source)
+
+	if (withMetadata) {
+		s = s.withMetadata()
+	}
 
 	let metadata = await s.metadata()
 
@@ -64,7 +71,8 @@ async function apply() {
 		s = await s.resize({
 			width,
 			height,
-			fit
+			fit,
+			withoutEnlargement
 		})
 	}
 
