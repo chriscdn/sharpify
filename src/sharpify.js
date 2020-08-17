@@ -10,6 +10,7 @@ const lock = new Semaphore()
 const defaultArgs = {
 	blur: 0,
 	saturation: 1,
+	brightness: 1,
 	width: null,
 	height: null,
 	fit: 'inside',

@@ -19,26 +19,27 @@ apply()
 
 async function apply() {
 
-	let blur = assertIntegerValue(args.blur, 0, 100)
-	let saturation = assertIntegerValue(args.saturation, 0, 1)
-	let rotate = assertIntegerValue(args.rotate, -20, 20)
-	let width = assertIntegerValue(args.width, 0, args.width)
-	let height = assertIntegerValue(args.height, 0, args.height)
-	let withMetadata = !!args.withMetadata
-	let withoutEnlargement = !!args.withoutEnlargement
+	const blur = assertIntegerValue(args.blur, 0, 100)
+	const saturation = assertIntegerValue(args.saturation, 0, 1)
+	const brightness = assertIntegerValue(args.brightness, 0, 2)
+	const rotate = assertIntegerValue(args.rotate, -20, 20)
+	const width = assertIntegerValue(args.width, 0, args.width)
+	const height = assertIntegerValue(args.height, 0, args.height)
+	const withMetadata = !!args.withMetadata
+	const withoutEnlargement = !!args.withoutEnlargement
 
-	let fit = args.fit
+	const fit = args.fit
 
-	let s = await sharp(source)
+	const s = await sharp(source)
 
 	if (withMetadata) {
 		s = s.withMetadata()
 	}
 
-	let metadata = await s.metadata()
+	const metadata = await s.metadata()
 
-	let originalWidth = metadata.width
-	let originalHeight = metadata.height
+	const originalWidth = metadata.width
+	const originalHeight = metadata.height
 	// console.log(`blur: ${blur}`)
 	// 
 	if (blur) {
@@ -49,6 +50,13 @@ async function apply() {
 		// console.log('wtf')
 		s = await s.modulate({
 			saturation
+		})
+	}
+
+	if (isNumber(brightness) && brightness != 1) {
+		// console.log('wtf')
+		s = await s.modulate({
+			brightness
 		})
 	}
 
