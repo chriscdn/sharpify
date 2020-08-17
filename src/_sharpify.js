@@ -30,7 +30,7 @@ async function apply() {
 
 	const fit = args.fit
 
-	const s = await sharp(source)
+	let s = await sharp(source)
 
 	if (withMetadata) {
 		s = s.withMetadata()
