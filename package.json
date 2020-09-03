@@ -13,6 +13,6 @@
     "is-number": "^7.0.0",
     "path-exists": "^4.0.0",
     "read-chunk": "^3.2.0",
-    "sharp": "^0.25.4"
+    "sharp": "^0.26.0"
   }
 }
