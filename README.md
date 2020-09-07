@@ -4,6 +4,8 @@ The [sharp](https://www.npmjs.com/package/sharp) package is amazing.  But for wh
 
 This little utility creates a child process for each sharp operation, which works around the memory leak.  A subset of operations are supported.
 
+A semaphore was added to prevent multiple asynchronous operations from writing to the same file at the same time.
+
 ## Installing
 
 ```bash
@@ -32,6 +34,7 @@ The default `options` are:
 const options = {
 	blur: 0,
 	saturation: 1,
+	brightness: 1,
 	width: null,
 	height: null,
 	fit: 'inside',
@@ -39,7 +42,7 @@ const options = {
 }
 ```
 
-- See the [blur](https://sharp.pixelplumbing.com/api-operation#blur) and [modulate](https://sharp.pixelplumbing.com/api-operation#modulate) documentation for details on `blur` and `saturation`.
+- See the [blur](https://sharp.pixelplumbing.com/api-operation#blur) and [modulate](https://sharp.pixelplumbing.com/api-operation#modulate) documentation for details on `blur`, `saturation`, and `brightness`.
 - See the [resizing images](https://sharp.pixelplumbing.com/api-resize) documentation for details on `width`, `height`, and `fit`.
 - See the [rotate](https://sharp.pixelplumbing.com/api-operation#rotate) documentation for details on `rotate` (units are in degrees).
 
