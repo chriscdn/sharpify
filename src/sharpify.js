@@ -19,7 +19,7 @@ const defaultArgs = {
 
 module.exports = async function(source, target, args) {
 
-	let jargs = {
+	const jargs = {
 		source,
 		target,
 		...defaultArgs,
@@ -29,7 +29,7 @@ module.exports = async function(source, target, args) {
 	// only one process should ever write to target at a time
 	await lock.acquire(target)
 
-	let f = fork(__dirname + '/_sharpify.js', [JSON.stringify(jargs)])
+	const f = fork(__dirname + '/_sharpify.js', [JSON.stringify(jargs)])
 
 	return new Promise((resolve, reject) => {
 			f.on('exit', async code => {
