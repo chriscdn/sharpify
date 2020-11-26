@@ -27,6 +27,7 @@ async function apply() {
 	const height = assertIntegerValue(args.height, 0, args.height)
 	const withMetadata = !!args.withMetadata
 	const withoutEnlargement = !!args.withoutEnlargement
+	const normalise = !!(args.normalise || args.normalize)
 
 	const fit = args.fit
 
@@ -40,43 +41,48 @@ async function apply() {
 
 	const originalWidth = metadata.width
 	const originalHeight = metadata.height
-	// console.log(`blur: ${blur}`)
-	// 
+
+	if (normalise) {
+		// normalise seems to have minimal effect
+		s = s.normalise()
+	}
+
 	if (blur) {
-		s = await s.blur(blur)
+		s = s.blur(blur)
 	}
 
 	if (isNumber(saturation) && saturation < 1) {
-		// console.log('wtf')
-		s = await s.modulate({
+		s = s.modulate({
 			saturation
 		})
 	}
 
 	if (isNumber(brightness) && brightness != 1) {
-		// console.log('wtf')
-		s = await s.modulate({
+		s = s.modulate({
 			brightness
 		})
 	}
 
 	if (rotate) {
-		s = await s.rotate(rotate)
+		// this doesnt take the orientation into account :(
+		// https://sharp.pixelplumbing.com/api-operation#rotate
+		s = s.rotate(rotate)
 
-		let box = boxify(originalWidth, originalHeight, rotate)
+		const box = boxify(originalWidth, originalHeight, rotate)
 
-		s = await s.extract({
+		s = s.extract({
 			left: box.left,
 			top: box.top,
 			width: box.width,
 			height: box.height
 		})
 	} else {
-		s = await s.rotate()
+		// this normalises rotation - see sharp docs
+		s = s.rotate()
 	}
 
 	if (width || height) {
-		s = await s.resize({
+		s = s.resize({
 			width,
 			height,
 			fit,
@@ -93,9 +99,20 @@ async function apply() {
 	}
 }
 
+// function isString(item) {
+// 	return typeof item === 'string'
+// }
 
+// function isTruthy(value) {
+// 	if (isNumber(value)) {
+// 		return !!parseInt(value)
+// 	} else if (isString(value)) {
+// 		return value.toLowerCase() != 'false'
+// 	} else {
+// 		return false
+// 	}
 
-
+// }
 
 function assertIntegerValue(value, min, max) {
 	if (isNumber(value)) {
@@ -111,54 +128,33 @@ function radians(degrees) {
 
 function boxify(width, height, degrees) {
 
-	let rads = radians(Math.abs(degrees))
+	const rads = radians(Math.abs(degrees))
 
-	//  rads = Math.min(rads, Math.PI - rads)
-
-	// console.log(`Mod: ${rads}`)
-
-	// console.log(`degrees: ${degrees}`)
-	// console.log(`rads: ${rads}`)
-
-	let sine = Math.sin(rads)
-	let cosine = Math.cos(rads)
-
-	// let top = height * cosine - 
+	const sine = Math.sin(rads)
+	const cosine = Math.cos(rads)
 
 	let left = height * sine
 	let top = width * sine
 
-	// console.log(`sine: ${sine}`)
-	// console.log(`cosine: ${cosine}`)
-	// console.log(`left: ${left}`)
-	// console.log(`top: ${top}`)
-
-	let bigWidth = height * sine + width * cosine
-	let bigHeight = height * cosine + width * sine
-
-	// console.log('')
-	// console.log(`bigWidth: ${bigWidth}`)
-	// console.log(`bigHeight: ${bigHeight}`)
+	const bigWidth = height * sine + width * cosine
+	const bigHeight = height * cosine + width * sine
 
 	let newWidth = bigWidth - 2 * left
 	let newHeight = bigHeight - 2 * top
 
-	// let newHeight = newWidth * height / width
-
-	let originalAspectRatio = width / height
-	let newAspectRatio = newWidth / newHeight
+	const originalAspectRatio = width / height
+	const newAspectRatio = newWidth / newHeight
 
 	if (originalAspectRatio < newAspectRatio) {
-		// wider
 
-		let newWidthConstrained = originalAspectRatio * newHeight
+		const newWidthConstrained = originalAspectRatio * newHeight
 
 		left = left + (newWidth - newWidthConstrained) / 2
 		newWidth = newWidthConstrained
 
 	} else {
 		// taller
-		let newHeightConstrained = newWidth / originalAspectRatio
+		const newHeightConstrained = newWidth / originalAspectRatio
 
 		top = top + (newHeight - newHeightConstrained) / 2
 		newHeight = newHeightConstrained

@@ -1,18 +1,18 @@
 {
-  "name": "@chriscdn/sharpify",
-  "version": "1.0.0",
-  "description": "A small sharp wrapper.",
-  "main": "src/index.js",
-  "repository": "https://github.com/chriscdn/sharpify",
-  "author": "Christopher Meyer <chris@schwiiz.org>",
-  "license": "Apache-2.0",
-  "private": true,
-  "dependencies": {
-    "@chriscdn/promise-semaphore": "^1.0.6",
-    "image-type": "^4.1.0",
-    "is-number": "^7.0.0",
-    "path-exists": "^4.0.0",
-    "read-chunk": "^3.2.0",
-    "sharp": "^0.26.2"
-  }
+	"name": "@chriscdn/sharpify",
+	"version": "1.0.1",
+	"description": "A small sharp wrapper.",
+	"main": "src/index.js",
+	"repository": "https://github.com/chriscdn/sharpify",
+	"author": "Christopher Meyer <chris@schwiiz.org>",
+	"license": "Apache-2.0",
+	"private": true,
+	"dependencies": {
+		"@chriscdn/promise-semaphore": "^1.0.6",
+		"image-type": "^4.1.0",
+		"is-number": "^7.0.0",
+		"path-exists": "^4.0.0",
+		"read-chunk": "^3.2.0",
+		"sharp": "^0.26.3"
+	}
 }
