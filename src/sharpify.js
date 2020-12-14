@@ -19,7 +19,7 @@ const maxConcurrentWorkers = Math.min(2, require('os').cpus().length)
 // https://www.npmjs.com/package/worker-farm#options
 const options = {
 	maxCallsPerWorker: 10, // restarts process after 50 calls due to sharp memory leaks
-	maxRetries: 5,
+	maxRetries: 500,
 	maxCallTime: 20000, // 20s?
 	maxConcurrentWorkers
 }
