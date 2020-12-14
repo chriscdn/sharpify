@@ -1,23 +1,40 @@
-const sharp = require('sharp');
-const args = JSON.parse(process.argv[2]);
-const isNumber = require('is-number');
+const sharp = require('sharp')
+// const args = JSON.parse(process.argv[2]);
+const isNumber = require('is-number')
 const fsp = require('fs').promises
 const isImage = require('./is-image')
 
-const source = args.source
-const target = args.target
 
-apply()
-	.catch(err => {
-		console.log(`--- Sharpify Error: ${source} ---`)
-		console.log(err)
-		return fsp.unlink(target)
-	})
-	.catch(err => {
-		// just in case unlink files
-	})
 
-async function apply() {
+// apply()
+// 	.catch(err => {
+// 		console.log(`--- Sharpify Error: ${source} ---`)
+// 		console.log(err)
+// 		return fsp.unlink(target)
+// 	})
+// 	.catch(err => {
+// 		// just in case unlink files
+// 	})
+// 	
+
+
+module.exports = async (args, callback) => {
+	try {
+		const results = await _apply(args)
+		callback(null, results)
+	} catch (e) {
+		callback(e.message)
+	}
+}
+
+
+async function _apply(args) {
+
+	const source = args.source
+	const target = args.target
+
+	console.log(source)
+	console.log(target)
 
 	const blur = assertIntegerValue(args.blur, 0, 100)
 	const saturation = assertIntegerValue(args.saturation, 0, 1)
@@ -93,6 +110,7 @@ async function apply() {
 	await s.toFile(target)
 
 	if (await isImage(target)) {
+		return target
 		// all good! exit gracefully
 	} else {
 		throw new Error('Invalid target generated.')

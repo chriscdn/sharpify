@@ -1,6 +1,6 @@
 {
   "name": "@chriscdn/sharpify",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A small sharp wrapper.",
   "main": "src/index.js",
   "repository": "https://github.com/chriscdn/sharpify",
@@ -13,6 +13,7 @@
     "is-number": "^7.0.0",
     "path-exists": "^4.0.0",
     "read-chunk": "^3.2.0",
-    "sharp": "^0.26.3"
+    "sharp": "^0.26.3",
+    "worker-farm": "^1.7.0"
   }
 }

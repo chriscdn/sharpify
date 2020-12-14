@@ -1,7 +1,4 @@
-const {
-	fork
-} = require('child_process')
-
+const workerFarm = require('worker-farm')
 const pathExists = require('path-exists')
 const Semaphore = require('@chriscdn/promise-semaphore')
 
@@ -17,30 +14,38 @@ const defaultArgs = {
 	rotate: null
 }
 
-module.exports = async function(source, target, args) {
+// https://www.npmjs.com/package/worker-farm#options
+const options = {
+	maxCallsPerWorker: 50, // restarts process after 50 calls due to sharp memory leaks
+	maxRetries: 5,
+	maxCallTime: 20000 // 20s?
+}
 
-	const jargs = {
+const workerCount = require('os').cpus().length
+
+console.log(`Sharpify Worker Count: ${workerCount}`)
+
+const sharpifyIt = workerFarm(options, require.resolve('./_sharpify.js'))
+
+module.exports = async (source, target, params) => {
+
+	const args = {
 		source,
 		target,
 		...defaultArgs,
-		...args
+		...params
 	}
 
-	// only one process should ever write to target at a time
 	await lock.acquire(target)
 
-	const f = fork(__dirname + '/_sharpify.js', [JSON.stringify(jargs)])
-
 	return new Promise((resolve, reject) => {
-			f.on('exit', async code => {
-				if (await pathExists(target)) {
-					resolve()
+			sharpifyIt(args, (err, target) => {
+				if (err) {
+					reject(err)
 				} else {
-					reject(new Error('Sharpify: An unknown error occurred.'))
+					resolve(target)
 				}
-
 			})
-			f.on('error', err => reject(err))
 		})
 		.finally(() => lock.release(target))
 
