@@ -33,8 +33,8 @@ async function _apply(args) {
 	const source = args.source
 	const target = args.target
 
-	console.log(source)
-	console.log(target)
+	// console.log(source)
+	// console.log(target)
 
 	const blur = assertIntegerValue(args.blur, 0, 100)
 	const saturation = assertIntegerValue(args.saturation, 0, 1)
@@ -110,8 +110,9 @@ async function _apply(args) {
 	await s.toFile(target)
 
 	if (await isImage(target)) {
-		return target
 		// all good! exit gracefully
+		return target
+		
 	} else {
 		throw new Error('Invalid target generated.')
 	}

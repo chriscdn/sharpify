@@ -14,11 +14,11 @@ const defaultArgs = {
 	rotate: null
 }
 
-const maxConcurrentWorkers = Math.min(4, require('os').cpus().length)
+const maxConcurrentWorkers = Math.min(2, require('os').cpus().length)
 
 // https://www.npmjs.com/package/worker-farm#options
 const options = {
-	maxCallsPerWorker: 50, // restarts process after 50 calls due to sharp memory leaks
+	maxCallsPerWorker: 10, // restarts process after 50 calls due to sharp memory leaks
 	maxRetries: 5,
 	maxCallTime: 20000, // 20s?
 	maxConcurrentWorkers
