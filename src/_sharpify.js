@@ -5,18 +5,8 @@ const fsp = require('fs').promises
 const isImage = require('./is-image')
 
 
-
-// apply()
-// 	.catch(err => {
-// 		console.log(`--- Sharpify Error: ${source} ---`)
-// 		console.log(err)
-// 		return fsp.unlink(target)
-// 	})
-// 	.catch(err => {
-// 		// just in case unlink files
-// 	})
-// 	
-
+// we only ever render the same image once.. no need to cache
+sharp.cache(false)
 
 module.exports = async (args, callback) => {
 	try {

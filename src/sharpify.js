@@ -1,5 +1,5 @@
-const workerFarm = require('worker-farm')
-const pathExists = require('path-exists')
+// const workerFarm = require('worker-farm')
+// const pathExists = require('path-exists')
 const Semaphore = require('@chriscdn/promise-semaphore')
 
 const lock = new Semaphore()
@@ -14,19 +14,21 @@ const defaultArgs = {
 	rotate: null
 }
 
-const maxConcurrentWorkers = Math.min(2, require('os').cpus().length)
+// const maxConcurrentWorkers = 1 // Math.min(2, require('os').cpus().length)
 
-// https://www.npmjs.com/package/worker-farm#options
-const options = {
-	maxCallsPerWorker: 10, // restarts process after 50 calls due to sharp memory leaks
-	maxRetries: 500,
-	maxCallTime: 20000, // 20s?
-	maxConcurrentWorkers
-}
+// // https://www.npmjs.com/package/worker-farm#options
+// const options = {
+// 	// maxCallsPerWorker: 10, // restarts process after 50 calls due to sharp memory leaks
+// 	maxRetries: 5,
+// 	maxCallTime: 20000, // 20s?
+// 	maxConcurrentWorkers
+// }
 
-console.log(`Sharpify Worker Count: ${maxConcurrentWorkers}`)
+// console.log(`Sharpify Worker Count: ${maxConcurrentWorkers}`)
 
-const sharpifyIt = workerFarm(options, require.resolve('./_sharpify.js'))
+// const sharpifyIt = workerFarm(options, require.resolve('./_sharpify.js'))
+
+const sharpifyIt = require('./_sharpify')
 
 module.exports = async (source, target, params) => {
 
