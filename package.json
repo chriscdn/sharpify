@@ -1,6 +1,6 @@
 {
   "name": "@chriscdn/sharpify",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A small sharp wrapper.",
   "main": "src/index.js",
   "repository": "https://github.com/chriscdn/sharpify",
