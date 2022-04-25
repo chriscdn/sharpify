@@ -9,7 +9,8 @@ const defaultArgs = {
 	width: null,
 	height: null,
 	fit: 'inside',
-	rotate: null
+	rotate: null,
+	withoutEnlargement: true,
 }
 
 const sharpifyIt = require('./_sharpify')
