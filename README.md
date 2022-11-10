@@ -1,8 +1,8 @@
 # @chriscdn/sharpify
 
-The [sharp](https://www.npmjs.com/package/sharp) package is amazing.  But for whatever reason there is a [memory leak](https://github.com/lovell/sharp/issues/955), which I don't understand well enough to work around.
+The [sharp](https://www.npmjs.com/package/sharp) package is amazing. But for whatever reason there is a [memory leak](https://github.com/lovell/sharp/issues/955), which I don't understand well enough to work around.
 
-This little utility creates a child process for each sharp operation, which works around the memory leak.  A subset of operations are supported.
+~~This little utility creates a child process for each sharp operation, which works around the memory leak. A subset of operations are supported.~~
 
 A semaphore was added to prevent multiple asynchronous operations from writing to the same file at the same time.
 
@@ -32,13 +32,13 @@ The default `options` are:
 
 ```js
 const options = {
-	blur: 0,
-	saturation: 1,
-	brightness: 1,
-	width: null,
-	height: null,
-	fit: 'inside',
-	rotate: null
+  blur: 0,
+  saturation: 1,
+  brightness: 1,
+  width: null,
+  height: null,
+  fit: 'inside',
+  rotate: null,
 }
 ```
 
