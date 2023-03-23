@@ -1,35 +1,35 @@
-const sharp = require('sharp')
-const isNumber = require('is-number')
-const fsp = require('fs').promises
-const isImage = require('./is-image')
+import sharp from 'sharp'
+import isNumber from 'is-number'
+
+import fs from 'fs'
+const fsp = fs.promises
+
+import isImage from './is-image'
+import { SharpifyParameters } from './types'
 
 // we only ever render the same image once.. no need to cache
 sharp.cache(false)
 
-module.exports = async (args, callback) => {
+export default async (source: string, target: string, args: SharpifyParameters, callback) => {
   try {
-    const results = await _apply(args)
+    const results = await _apply(source, target, args)
     callback(null, results)
   } catch (e) {
     callback(e.message)
   }
 }
 
-async function _apply(args) {
-  const source = args.source
-  const target = args.target
-
+async function _apply(source: string, target: string, args: SharpifyParameters) {
   const blur = assertIntegerValue(args.blur, 0, 100)
-  const saturation = assertIntegerValue(args.saturation, 0, 1)
   const brightness = assertIntegerValue(args.brightness, 0, 2)
-  const rotate = assertIntegerValue(args.rotate, -20, 20)
-  const width = assertIntegerValue(args.width, 0, args.width)
-  const height = assertIntegerValue(args.height, 0, args.height)
-  const withMetadata = !!args.withMetadata
-  const withoutEnlargement = !!args.withoutEnlargement
-  const normalise = !!(args.normalise || args.normalize)
-
   const fit = args.fit
+  const height = assertIntegerValue(args.height, 0, args.height)
+  const normalise = args.normalise
+  const rotate = assertIntegerValue(args.rotate, -20, 20)
+  const saturation = assertIntegerValue(args.saturation, 0, 1)
+  const width = assertIntegerValue(args.width, 0, args.width)
+  const withMetadata = args.withMetadata
+  const withoutEnlargement = args.withoutEnlargement
 
   let s = await sharp(source)
 
@@ -47,23 +47,19 @@ async function _apply(args) {
     s = s.normalise()
   }
 
-  if (blur) {
+  if (isNumber(blur) && blur > 0) {
     s = s.blur(blur)
   }
 
   if (isNumber(saturation) && saturation < 1) {
-    s = s.modulate({
-      saturation,
-    })
+    s = s.modulate({ saturation })
   }
 
   if (isNumber(brightness) && brightness != 1) {
-    s = s.modulate({
-      brightness,
-    })
+    s = s.modulate({ brightness })
   }
 
-  if (rotate) {
+  if (rotate !== 0) {
     // this doesnt take the orientation into account :(
     // https://sharp.pixelplumbing.com/api-operation#rotate
     s = s.rotate(rotate)
@@ -100,7 +96,7 @@ async function _apply(args) {
   }
 }
 
-function assertIntegerValue(value, min, max) {
+function assertIntegerValue(value, min, max): number | null {
   if (isNumber(value)) {
     return Math.min(max, Math.max(min, value))
   } else {
@@ -108,7 +104,7 @@ function assertIntegerValue(value, min, max) {
   }
 }
 
-function radians(degrees) {
+function radians(degrees): number {
   return (degrees * Math.PI) / 180
 }
 
