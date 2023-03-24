@@ -17,4 +17,4 @@ declare const _default: (source: string, target: string, params: Partial<Sharpif
 
 declare function export_default(filePath: any): Promise<boolean>;
 
-export { export_default as isImage, _default as sharpify };
+export { SharpifyParameters, export_default as isImage, _default as sharpify };

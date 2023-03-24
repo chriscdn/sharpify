@@ -9,7 +9,7 @@
   "author": "Christopher Meyer <chris@schwiiz.org>",
   "private": true,
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf ./lib/ && rollup -c",
     "watch": "rollup -c --watch",
     "bump": "versiony package.json --patch"
   },
