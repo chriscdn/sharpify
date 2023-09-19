@@ -1,6 +1,8 @@
 export default async function (filePath: string): Promise<boolean> {
   try {
-    // Seems necessary for the CJS export.
+    //
+    // Seems necessary for the CJS export to work.
+    //
     const { default: imageType } = await import('image-type')
     const { minimumBytes } = await import('image-type')
     const { readChunk } = await import('read-chunk')

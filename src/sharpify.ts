@@ -1,6 +1,5 @@
 import Semaphore from '@chriscdn/promise-semaphore'
-import { SharpifyParameters } from './types'
-import sharpifyIt from './_sharpify'
+import sharpifyIt, { SharpifyParameters } from './_sharpify'
 
 const semaphore = new Semaphore()
 

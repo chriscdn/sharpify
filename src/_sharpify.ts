@@ -1,11 +1,20 @@
 import sharp from 'sharp'
 import isNumber from 'is-number'
-
-import fs from 'fs'
-const fsp = fs.promises
-
 import isImage from './is-image'
-import { SharpifyParameters } from './types'
+import { FitEnum } from 'sharp'
+
+export type SharpifyParameters = {
+  blur: number // https://sharp.pixelplumbing.com/api-operation#blur
+  brightness: number
+  fit: keyof FitEnum
+  height: number
+  normalise: boolean // https://sharp.pixelplumbing.com/api-operation#normalise
+  rotate: number
+  saturation: number
+  width: number
+  withMetadata: boolean
+  withoutEnlargement: boolean
+}
 
 // we only ever render the same image once.. no need to cache
 sharp.cache(false)
