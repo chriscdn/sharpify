@@ -1,6 +1,6 @@
 {
   "name": "@chriscdn/sharpify",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "A small sharp wrapper.",
   "repository": "https://github.com/chriscdn/sharpify",
   "author": "Christopher Meyer <chris@schwiiz.org>",
