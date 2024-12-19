@@ -1,32 +1,33 @@
 {
   "name": "@chriscdn/sharpify",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "A small sharp wrapper.",
-  "main": "lib/index.cjs.js",
-  "module": "lib/index.es.js",
-  "types": "lib/index.d.ts",
   "repository": "https://github.com/chriscdn/sharpify",
   "author": "Christopher Meyer <chris@schwiiz.org>",
   "private": true,
+  "type": "module",
+  "source": "./src/index.ts",
+  "main": "./lib/sharpify.cjs",
+  "module": "./lib/sharpify.module.js",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "require": "./lib/sharpify.cjs",
+    "default": "./lib/sharpify.modern.js"
+  },
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "rm -rf ./lib/ && rollup -c",
-    "watch": "rollup -c --watch",
-    "bump": "versiony package.json --patch"
+    "build": "rm -rf ./lib/ && microbundle --format modern,esm,cjs",
+    "dev": "microbundle watch --format cjs,es"
   },
   "dependencies": {
-    "@chriscdn/promise-semaphore": "^2.0.1",
+    "@chriscdn/memoize": "^1.0.2",
+    "@chriscdn/promise-semaphore": "^2.0.9",
     "image-type": "^5.2.0",
-    "is-number": "^7.0.0",
-    "read-chunk": "4.0.3",
-    "sharp": "^0.31.3"
+    "read-chunk": "5.0.0",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
-    "@types/is-number": "^7.0.3",
-    "@types/sharp": "^0.31.1",
-    "esbuild": "^0.17.12",
-    "rollup": "^3.20.1",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-esbuild": "^5.0.0",
-    "typescript": "^5.0.2"
+    "@types/sharp": "^0.32.0",
+    "microbundle": "^0.15.1"
   }
 }
