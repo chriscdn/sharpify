@@ -1,6 +1,6 @@
 {
   "name": "@chriscdn/sharpify",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A small sharp wrapper.",
   "repository": "https://github.com/chriscdn/sharpify",
   "author": "Christopher Meyer <chris@schwiiz.org>",
@@ -20,8 +20,8 @@
     "dev": "microbundle watch --format cjs,es"
   },
   "dependencies": {
-    "@chriscdn/memoize": "^1.0.2",
-    "@chriscdn/promise-semaphore": "^2.0.9",
+    "@chriscdn/memoize": "^1.0.7",
+    "@chriscdn/promise-semaphore": "^2.0.10",
     "image-type": "^5.2.0",
     "read-chunk": "5.0.0",
     "sharp": "^0.33.5"
