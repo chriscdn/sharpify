@@ -1,4 +1,4 @@
-import Semaphore from "@chriscdn/promise-semaphore";
+import { Semaphore } from "@chriscdn/promise-semaphore";
 import { sharpifyIt, type SharpifyParameters } from "./_sharpify";
 
 const semaphore = new Semaphore();
