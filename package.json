@@ -23,10 +23,8 @@
     "@chriscdn/memoize": "^1.0.9",
     "@chriscdn/promise-semaphore": "^3.0.1",
     "image-type": "^5.2.0",
-    "read-chunk": "5.0.0"
-  },
-  "peerDependencies": {
-    "sharp": "^0.34.1"
+    "read-chunk": "5.0.0",
+    "sharp": "0.29.3"
   },
   "devDependencies": {
     "microbundle": "^0.15.1"
