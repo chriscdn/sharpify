@@ -1,1 +1,2 @@
-export declare const isImage: (filePath: string) => Promise<boolean>;
+declare const isImage: (filePath: string) => Promise<boolean>;
+export { isImage };

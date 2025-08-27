@@ -1,6 +1,6 @@
 {
   "name": "@chriscdn/sharpify",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "A small sharp wrapper.",
   "repository": "https://github.com/chriscdn/sharpify",
   "author": "Christopher Meyer <chris@schwiiz.org>",
@@ -21,9 +21,7 @@
   },
   "dependencies": {
     "@chriscdn/memoize": "^1.0.10",
-    "@chriscdn/promise-semaphore": "^3.0.1",
-    "image-type": "^6.0.0",
-    "read-chunk": "^5.0.0",
+    "@chriscdn/promise-semaphore": "^3.1.1",
     "sharp": "^0.34.3"
   },
   "devDependencies": {
