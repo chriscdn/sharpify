@@ -9,7 +9,7 @@ export type SharpifyParameters = {
   brightness: number;
   fit: keyof FitEnum;
   height: number;
-  normalise: boolean; // https://sharp.pixelplumbing.com/api-operation#normalise
+  // normalise: boolean; // https://sharp.pixelplumbing.com/api-operation#normalise
   rotate: number;
   saturation: number;
   width: number;
@@ -29,7 +29,7 @@ export const sharpifyIt = async (
   const brightness = assertIntegerValue(args.brightness, 0, 2);
   const fit = args.fit;
   const height = assertIntegerValue(args.height, 0, args.height);
-  const normalise = args.normalise;
+  // const normalise = args.normalise;
   const rotate = assertIntegerValue(args.rotate, -20, 20);
   const saturation = assertIntegerValue(args.saturation, 0, 1);
   const width = assertIntegerValue(args.width, 0, args.width);
@@ -47,10 +47,10 @@ export const sharpifyIt = async (
   const originalWidth = metadata.width;
   const originalHeight = metadata.height;
 
-  if (normalise) {
-    // normalise seems to have minimal effect
-    s = s.normalise();
-  }
+  // if (normalise) {
+  //   // normalise seems to have minimal effect
+  //   s = s.normalise();
+  // }
 
   if (isNumber(blur) && blur > 0) {
     s = s.blur(blur);

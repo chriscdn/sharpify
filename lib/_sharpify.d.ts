@@ -4,7 +4,6 @@ export type SharpifyParameters = {
     brightness: number;
     fit: keyof FitEnum;
     height: number;
-    normalise: boolean;
     rotate: number;
     saturation: number;
     width: number;
