@@ -1,3 +1,25 @@
-export { sharpify } from "./sharpify";
-export { isImage } from "./is-image";
-export type { SharpifyParameters } from "./_sharpify";
+import { FitEnum } from 'sharp';
+
+type SharpifyParameters = {
+    blur: number;
+    brightness: number;
+    fit: keyof FitEnum;
+    rotate: number;
+    saturation: number;
+    height?: number;
+    width?: number;
+    withMetadata: boolean;
+    withoutEnlargement: boolean;
+};
+
+/**
+ * @param source The source file path.
+ * @param target The destination file path.
+ * @param params Sharp parameters.
+ * @returns
+ */
+declare const sharpify: (source: string, target: string, params: Partial<SharpifyParameters>) => Promise<string>;
+
+declare const isImage: (filePath: string) => Promise<boolean>;
+
+export { type SharpifyParameters, isImage, sharpify };

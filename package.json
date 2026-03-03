@@ -1,30 +1,27 @@
 {
   "name": "@chriscdn/sharpify",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "A small sharp wrapper.",
   "repository": "https://github.com/chriscdn/sharpify",
   "author": "Christopher Meyer <chris@schwiiz.org>",
   "private": true,
   "type": "module",
-  "source": "./src/index.ts",
-  "main": "./lib/sharpify.cjs",
-  "module": "./lib/sharpify.module.js",
-  "exports": {
-    "types": "./lib/index.d.ts",
-    "require": "./lib/sharpify.cjs",
-    "default": "./lib/sharpify.modern.js"
-  },
+  "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "exports": "./lib/index.js",
   "scripts": {
-    "build": "rm -rf ./lib/ && microbundle --format modern,esm,cjs",
-    "dev": "microbundle watch --format cjs,es"
+    "build": "tsup",
+    "watch": "yarn build --watch",
+    "test": "vitest"
   },
   "dependencies": {
-    "@chriscdn/memoize": "^1.0.10",
-    "@chriscdn/promise-semaphore": "^3.1.1",
+    "@chriscdn/promise-semaphore": "^4.0.0",
+    "@chriscdn/to-number": "^2.0.1",
     "sharp": "^0.34.3"
   },
   "devDependencies": {
-    "microbundle": "^0.15.1"
+    "@tsconfig/strictest": "^2.0.8",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }
