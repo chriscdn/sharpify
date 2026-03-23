@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@chriscdn/promise-semaphore": "^4.0.0",
-    "@chriscdn/to-number": "^2.0.1",
+    "@chriscdn/to-number": "^2.0.2",
     "sharp": "^0.34.3"
   },
   "devDependencies": {

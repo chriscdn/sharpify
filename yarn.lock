@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@chriscdn/promise-semaphore/-/promise-semaphore-4.0.0.tgz#d4013efdc8ae3f38898ffb2a8d5dd4aa803b7af8"
   integrity sha512-vMFXvksQF3zy3e0r5hL8FUMhajcbSd7HJOcGI4CLYQgjd5znoqHIfzYCYVlw0mCYUjzqk5NTIp7mY7m+IB3+uQ==
 
-"@chriscdn/to-number@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@chriscdn/to-number/-/to-number-2.0.1.tgz#0075e054e5cd32806d9da3e49005a2e3fc2f6f5e"
-  integrity sha512-C9G6kZZDxp1Ko373NfwmLCXwtYvrxVdOAAxsHg2YY0uyVvGBAJrz3AzAPjthpBqsaOAsI4yxMQbxWmAl07jLnA==
+"@chriscdn/to-number@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@chriscdn/to-number/-/to-number-2.0.2.tgz#14d1ba78f66b891377ac30df90e3735977b46957"
+  integrity sha512-A5mwoobXombmORJ9nOfK4UCxddu9Ene8M/4ydKDnE3O/8/KTOK6MEJxLSAZisG5BQ2g4IpXrh6paFtwYHx00tA==
 
 "@emnapi/runtime@^1.7.0":
   version "1.8.1"

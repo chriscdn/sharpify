@@ -63,7 +63,7 @@ const sharpifyIt = async (
     s = s.modulate({ brightness });
   }
 
-  if (isNumber(rotate) && rotate > 0) {
+  if (isNumber(rotate) && rotate !== 0) {
     // this doesnt take the orientation into account :(
     // https://sharp.pixelplumbing.com/api-operation#rotate
     s = s.rotate(rotate);
