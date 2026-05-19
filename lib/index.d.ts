@@ -23,4 +23,4 @@ declare const sharpify: (source: string, target: string, params: Partial<Sharpif
 
 declare const isImage: (filePath: string) => Promise<boolean>;
 
-export { type SharpifyParameters, concurrency, isImage, sharpify };
+export { type SharpifyParameters, isImage, concurrency as sharpConcurrency, sharpify };
