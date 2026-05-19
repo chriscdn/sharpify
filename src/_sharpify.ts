@@ -15,6 +15,8 @@ type SharpifyParameters = {
   withoutEnlargement: boolean;
 };
 
+const concurrency = sharp.concurrency; // (concurrency:number) => sharp.concurrency(concurrency)
+
 // we only ever render the same image once.. no need to cache
 sharp.cache(false);
 
@@ -158,4 +160,4 @@ const boxify = (width: number, height: number, degrees: number) => {
   };
 };
 
-export { sharpifyIt, type SharpifyParameters };
+export { sharpifyIt, type SharpifyParameters, concurrency };

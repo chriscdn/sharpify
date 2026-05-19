@@ -1,4 +1,4 @@
-import { FitEnum } from 'sharp';
+import sharp, { FitEnum } from 'sharp';
 
 type SharpifyParameters = {
     blur: number;
@@ -11,6 +11,7 @@ type SharpifyParameters = {
     withMetadata: boolean;
     withoutEnlargement: boolean;
 };
+declare const concurrency: typeof sharp.concurrency;
 
 /**
  * @param source The source file path.
@@ -22,4 +23,4 @@ declare const sharpify: (source: string, target: string, params: Partial<Sharpif
 
 declare const isImage: (filePath: string) => Promise<boolean>;
 
-export { type SharpifyParameters, isImage, sharpify };
+export { type SharpifyParameters, concurrency, isImage, sharpify };
