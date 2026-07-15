@@ -16,11 +16,12 @@
   },
   "dependencies": {
     "@chriscdn/promise-semaphore": "^4.0.0",
-    "@chriscdn/to-number": "^2.0.2",
-    "sharp": "^0.34.3"
+    "@chriscdn/to-number": "^2.1.1",
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.8",
+    "@types/node": "^26.1.1",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   }

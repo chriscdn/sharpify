@@ -2,6 +2,7 @@ import sharp from "sharp";
 import { isNumber, toNumber } from "@chriscdn/to-number";
 import { isImage } from "./is-image";
 import { FitEnum } from "sharp";
+import fs from "fs/promises";
 
 type SharpifyParameters = {
   blur: number; // https://sharp.pixelplumbing.com/api-operation#blur
@@ -98,6 +99,8 @@ const sharpifyIt = async (
     // all good! exit gracefully
     return target;
   } else {
+    // delete whatever was created
+    await fs.unlink(target).catch((_) => {});
     throw new Error("Invalid target generated.");
   }
 };

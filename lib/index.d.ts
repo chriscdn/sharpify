@@ -1,4 +1,4 @@
-import sharp, { FitEnum } from 'sharp';
+import { FitEnum } from 'sharp';
 
 type SharpifyParameters = {
     blur: number;
@@ -11,7 +11,7 @@ type SharpifyParameters = {
     withMetadata: boolean;
     withoutEnlargement: boolean;
 };
-declare const concurrency: typeof sharp.concurrency;
+declare const concurrency: (concurrency?: number) => number;
 
 /**
  * @param source The source file path.
